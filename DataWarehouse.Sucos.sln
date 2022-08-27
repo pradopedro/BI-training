@@ -1,22 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.3.32804.467
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32802.440
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DataWarehouse.Sucos", "DataWarehouse.Sucos\DataWarehouse.Sucos.sqlproj", "{CA81B727-C35B-4FC8-B33E-C421942739A7}"
+EndProject
+Project("{C9674DCB-5085-4A16-B785-4C70DD1589BD}") = "CargaDatawarehouse", "CargaDatawarehouse\CargaDatawarehouse.dtproj", "{6533463F-6E50-4385-B97D-CE5A057DAC3C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Development|Any CPU = Development|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CA81B727-C35B-4FC8-B33E-C421942739A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CA81B727-C35B-4FC8-B33E-C421942739A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CA81B727-C35B-4FC8-B33E-C421942739A7}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{CA81B727-C35B-4FC8-B33E-C421942739A7}.Development|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA81B727-C35B-4FC8-B33E-C421942739A7}.Development|Any CPU.Build.0 = Debug|Any CPU
+		{CA81B727-C35B-4FC8-B33E-C421942739A7}.Development|Any CPU.Deploy.0 = Debug|Any CPU
 		{CA81B727-C35B-4FC8-B33E-C421942739A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA81B727-C35B-4FC8-B33E-C421942739A7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CA81B727-C35B-4FC8-B33E-C421942739A7}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{6533463F-6E50-4385-B97D-CE5A057DAC3C}.Debug|Any CPU.ActiveCfg = Development
+		{6533463F-6E50-4385-B97D-CE5A057DAC3C}.Debug|Any CPU.Build.0 = Development
+		{6533463F-6E50-4385-B97D-CE5A057DAC3C}.Development|Any CPU.ActiveCfg = Development
+		{6533463F-6E50-4385-B97D-CE5A057DAC3C}.Development|Any CPU.Build.0 = Development
+		{6533463F-6E50-4385-B97D-CE5A057DAC3C}.Release|Any CPU.ActiveCfg = Development
+		{6533463F-6E50-4385-B97D-CE5A057DAC3C}.Release|Any CPU.Build.0 = Development
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

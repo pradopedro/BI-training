@@ -1,0 +1,575 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/27/2022 10:33:51 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SBDEV10"
+  DTS:CreatorName="SBDev10\Desenvolvedor"
+  DTS:DTSID="{93AC35C2-2069-4781-93BB-E9F7F117E15E}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.694.0"
+  DTS:LocaleID="1046"
+  DTS:ObjectName="Package"
+  DTS:PackageType="5"
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{11DBCA6C-B0E1-4E17-8816-E3C6AB922965}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[localhost.DW_SUCOS]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E33AFB06-3A65-441D-93C4-5A31FA2A3E70}"
+      DTS:ObjectName="localhost.DW_SUCOS">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=localhost;User ID=;Initial Catalog=DW_SUCOS;Provider=MSOLEDBSQL19.1;Persist Security Info=False;Integrated Security=SSPI;Initial File Name=;Use Encryption for Data=Optional;Server SPN=;Authentication=;Access Token=;Host Name In Certificate=;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Criação da Dimensão Fábrica"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tarefa Fluxo de Dados"
+      DTS:DTSID="{96BBAAC8-D196-42CD-990A-92AD7FF6F2C9}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Criação da Dimensão Fábrica"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Criação da Dimensão Fábrica\Conversão de Dados"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Conversão de Dados;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;0"
+              description="Conversão de Dados"
+              name="Conversão de Dados"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+                  name="Entrada de Conversão de Dados">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[CODIGO]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="3"
+                      cachedName="CODIGO"
+                      lineageId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].Columns[CODIGO]" />
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados].Columns[DESCRITOR]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="25"
+                      cachedName="DESCRITOR"
+                      lineageId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].Columns[DESCRITOR]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados]"
+                  exclusionGroup="1"
+                  name="Saída de Conversão de Dados"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Cod_Fabrica]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="50"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Cod_Fabrica]"
+                      name="Cod_Fabrica"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].Columns[CODIGO]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Desc_Fabrica]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      length="200"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Desc_Fabrica]"
+                      name="Desc_Fabrica"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Especifica a coluna de entrada usada como a origem dois dados para a conversão."
+                          name="SourceInputColumnLineageID">#{Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].Columns[DESCRITOR]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indica se a coluna usa as rotinas de análise de localidade neutro mais rápidas."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Conversão de Dados"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Erro de Conversão de Dados].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Origem OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;7"
+              description="Origem OLE DB"
+              name="Exec Cons SQL"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT '001' AS CODIGO, 'Fábrica Rio de Janeiro' AS DESCRITOR
+UNION
+SELECT '002' AS CODIGO, 'Fábrica São Paulo' AS DESCRITOR
+UNION
+SELECT '003' AS CODIGO, 'Fábrica Minas Gerais' AS DESCRITOR
+UNION
+SELECT '004' AS CODIGO, 'Fábrica Espírito Santo' AS DESCRITOR
+UNION
+SELECT '005' AS CODIGO, 'Fábrica Distrito Federal' AS DESCRITOR
+UNION
+SELECT '006' AS CODIGO, 'Fábrica Goiás' AS DESCRITOR
+UNION
+SELECT '007' AS CODIGO, 'Fábrica Amazonas' AS DESCRITOR
+UNION
+SELECT '008' AS CODIGO, 'Fábrica Sergipe' AS DESCRITOR
+UNION
+SELECT '009' AS CODIGO, 'Fábrica Rio Grande do Sul' AS DESCRITOR
+UNION
+SELECT '010' AS CODIGO, 'Fábrica Bahia' AS DESCRITOR</property>
+                <property
+                  dataType="System.String"
+                  description="A variável que contém o comando SQL a ser executado."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Os mapeamentos entre os parâmetros no comando SQL e as variáveis."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.DW_SUCOS]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.DW_SUCOS]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB]"
+                  name="Saída de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].Columns[CODIGO]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].ExternalColumns[CODIGO]"
+                      length="3"
+                      lineageId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].Columns[CODIGO]"
+                      name="CODIGO"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].Columns[DESCRITOR]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversão"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].ExternalColumns[DESCRITOR]"
+                      length="25"
+                      lineageId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].Columns[DESCRITOR]"
+                      name="DESCRITOR"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].ExternalColumns[CODIGO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      name="CODIGO" />
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB].ExternalColumns[DESCRITOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      name="DESCRITOR" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Erro de Origem OLE DB]"
+                  isErrorOut="true"
+                  name="Saída de Erro de Origem OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[CODIGO]"
+                      codePage="1252"
+                      dataType="str"
+                      length="3"
+                      lineageId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[CODIGO]"
+                      name="CODIGO" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[DESCRITOR]"
+                      codePage="1252"
+                      dataType="str"
+                      length="25"
+                      lineageId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[DESCRITOR]"
+                      name="DESCRITOR" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Erro de Origem OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destino OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Todos os Direitos Reservados; http://www.microsoft.com/sql/support;4"
+              description="Destino OLE DB"
+              name="Tab Dim_Fabrica"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="O tempo em segundos antes que um comando expire. Zero indica uma expiração infinita."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowset">[dbo].[Dim_Fabrica]</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica a variável que contém o nome do objeto de banco de dados usado para abrir um conjunto de linhas."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="O comando SQL a ser executado."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica a página de código de coluna a ser usada quando não há informações de página de código disponíveis a partir da fonte de dados."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forca o uso do valor da propriedade DefaultCodePage durante a descrição dos dados de caractere."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica o modo usado para acessar o banco de dados."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se os valores fornecidos para colunas de identidade serão copiados no destino. Se false, os valores para colunas de identidade serão gerados automaticamente no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indica se as colunas que contêm null terão null inserido no destino. Se false, as colunas que contêm null terão seus valores padrão inseridos no destino. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Especifica as opções a serem usadas com o carregamento rápido. Aplicável apenas se o carregamento rápido estiver ativado."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Especifica quando confirmações são emitidas durante a inserção de dados. Um valor de 0 especifica que uma confirmação será emitida ao final da inserção de dados. Aplicável somente se o carregamento rápido estiver ativado."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[localhost.DW_SUCOS]"
+                  connectionManagerRefId="Package.ConnectionManagers[localhost.DW_SUCOS]"
+                  description="A conexão de tempo de execução OLE DB usada para acessar o banco de dados."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Inputs[Entrada de Destino OLE DB]"
+                  errorOrTruncationOperation="Inserir"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrada de Destino OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Inputs[Entrada de Destino OLE DB].Columns[Cod_Fabrica]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="Cod_Fabrica"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Inputs[Entrada de Destino OLE DB].ExternalColumns[Cod_Fabrica]"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Cod_Fabrica]" />
+                    <inputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Inputs[Entrada de Destino OLE DB].Columns[Desc_Fabrica]"
+                      cachedDataType="wstr"
+                      cachedLength="200"
+                      cachedName="Desc_Fabrica"
+                      externalMetadataColumnId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Inputs[Entrada de Destino OLE DB].ExternalColumns[Desc_Fabrica]"
+                      lineageId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados].Columns[Desc_Fabrica]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Inputs[Entrada de Destino OLE DB].ExternalColumns[Cod_Fabrica]"
+                      dataType="wstr"
+                      length="50"
+                      name="Cod_Fabrica" />
+                    <externalMetadataColumn
+                      refId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Inputs[Entrada de Destino OLE DB].ExternalColumns[Desc_Fabrica]"
+                      dataType="wstr"
+                      length="200"
+                      name="Desc_Fabrica" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Outputs[Saída de Erro de Destino OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Saída de Erro de Destino OLE DB"
+                  synchronousInputId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Inputs[Entrada de Destino OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Outputs[Saída de Erro de Destino OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Criação da Dimensão Fábrica.Paths[Saída de Conversão de Dados]"
+              endId="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica.Inputs[Entrada de Destino OLE DB]"
+              name="Saída de Conversão de Dados"
+              startId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Outputs[Saída de Conversão de Dados]" />
+            <path
+              refId="Package\Criação da Dimensão Fábrica.Paths[Saída de Origem OLE DB]"
+              endId="Package\Criação da Dimensão Fábrica\Conversão de Dados.Inputs[Entrada de Conversão de Dados]"
+              name="Saída de Origem OLE DB"
+              startId="Package\Criação da Dimensão Fábrica\Exec Cons SQL.Outputs[Saída de Origem OLE DB]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="224,42"
+          Id="Package\Criação da Dimensão Fábrica"
+          TopLeft="52,44" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Criação da Dimensão Fábrica">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="159,42"
+          Id="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica"
+          TopLeft="319,176" />
+        <NodeLayout
+          Size="158,42"
+          Id="Package\Criação da Dimensão Fábrica\Exec Cons SQL"
+          TopLeft="51,38" />
+        <NodeLayout
+          Size="182,42"
+          Id="Package\Criação da Dimensão Fábrica\Conversão de Dados"
+          TopLeft="171,115" />
+        <EdgeLayout
+          Id="Package\Criação da Dimensão Fábrica.Paths[Saída de Origem OLE DB]"
+          TopLeft="130,80">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="132,35"
+              Start="0,0"
+              End="132,27.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.5"
+                    Point2="0,17.5"
+                    Point3="4,17.5" />
+                  <mssgle:LineSegment
+                    End="128,17.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="128,17.5"
+                    Point2="132,17.5"
+                    Point3="132,21.5" />
+                  <mssgle:LineSegment
+                    End="132,27.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Criação da Dimensão Fábrica.Paths[Saída de Conversão de Dados]"
+          TopLeft="353,136">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="45.5,40"
+              Start="0,0"
+              End="45.5,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="41.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="41.5,0"
+                    Point2="45.5,0"
+                    Point3="45.5,4" />
+                  <mssgle:LineSegment
+                    End="45.5,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Criação da Dimensão Fábrica\Exec Cons SQL">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Criação da Dimensão Fábrica\Tab Dim_Fabrica">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
