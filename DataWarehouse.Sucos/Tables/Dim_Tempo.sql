@@ -16,6 +16,6 @@
     [Nome_Semestre] NVARCHAR(50) NULL, 
     [Cod_Semestre_Ano] NVARCHAR(50) NULL, 
     [Nome_Semestre_Ano] NVARCHAR(50) NULL, 
-    [Ano] INT NULL, 
+    [Ano] NVARCHAR(50) NULL, 
     [Tipo_Dia] NVARCHAR(50) NULL
 )
